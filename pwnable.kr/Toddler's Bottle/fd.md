@@ -72,9 +72,11 @@ fd@ubuntu:~$
 ### Step 3: Get the flag
 
 OK, `fd.c` MUST have access to the file! It expects an argument that will become a _file descriptor_. 
-According to the [Linux MAN page](http://man7.org/linux/man-pages/man3/stdout.3.html), `STDIN` is associated with filedescriptor `0`. That means if we give `0x1234` as an argument, the `fd` will become `0`.
+According to the [Linux MAN page](http://man7.org/linux/man-pages/man3/stdout.3.html), `STDIN` is associated with filedescriptor `0`. 
+That means we have to make `fd=0` if we want to pass our input to the program.
+If we use `0x1234` as an argument, `fd` would become `STDIN` and we can enter the password `LETMEWIN` :)
 
-We call the `fd` program with argument 4660 (`0x1234` in decimal) and enter the `LETMEWIN` string:
+We call the `fd` program with argument 4660 (`0x1234` in decimal) and enter the `LETMEWIN` right after that:
 
 ```bash
 fd@ubuntu:~$ ./fd `python -c "print 0x1234"` # This is equivalent to './fd 4660'
