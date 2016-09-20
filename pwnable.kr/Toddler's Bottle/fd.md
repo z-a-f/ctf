@@ -13,7 +13,9 @@ The first thing we ssh to the machine and look around
 
 ```sh
 $> ssh fd@pwnable.kr -p2222
-fd@pwnable.kr's password:
+```
+```
+fd@pwnable.kr\'s password:
  ____  __    __  ____    ____  ____   _        ___      __  _  ____
 |    \|  |__|  ||    \  /    ||    \ | |      /  _]    |  |/ ]|    \
 |  o  )  |  |  ||  _  ||  o  ||  o  )| |     /  [_     |  ' / |  D  )
