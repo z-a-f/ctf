@@ -9,12 +9,11 @@
 <button class="section" target="solution" show="Show solution" hide="Hide solution"></button>
 
 <!--sec data-title="Solution" data-id="solution" data-show=false ces-->
-The first thing we ssh to the machine and look around
+
+### Step 1: SSH to the remote, and look around
 
 ```sh
 $> ssh fd@pwnable.kr -p2222
-```
-```
 fd@pwnable.kr\'s password:
  ____  __    __  ____    ____  ____   _        ___      __  _  ____
 |    \|  |__|  ||    \  /    ||    \ | |      /  _]    |  |/ ]|    \
@@ -29,10 +28,61 @@ fd@pwnable.kr\'s password:
 - Simply type "irssi" command to join IRC now
 - files under /tmp can be erased anytime. make your directory under /tmp
 - to use peda, issue `source /usr/share/peda/peda.py` in gdb terminal
-Last login: Tue Sep 20 08:46:49 2016 from 183.252.23.53
+
+fd@ubuntu:~$ ls
+fd  fd.c  flag
+
+fd@ubuntu:~$ cat flag
+cat: flag: Permission denied
+```
+
+We can see that we cannot read the flag (duh!) - Maybe the other file has something.
+
+
+### Step 2: See what is inside other files
+
+```bash
+fd@ubuntu:~$ cat fd.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+char buf[32];
+int main(int argc, char* argv[], char* envp[]){
+        if(argc<2){
+            printf("pass argv[1] a number\n");
+            return 0;
+        }
+        int fd = atoi( argv[1] ) - 0x1234;
+        int len = 0;
+        len = read(fd, buf, 32);
+        if(!strcmp("LETMEWIN\n", buf)){
+            printf("good job :)\n");
+            system("/bin/cat flag");
+            exit(0);
+        }
+        printf("learn about Linux file IO\n");
+        return 0;
+
+}
+
 fd@ubuntu:~$
 
 ```
+
+OK, `fd.c` MUST have access to the file! It expects an argument that will become a _file descriptor_. 
+According to the [Linux MAN page](http://man7.org/linux/man-pages/man3/stdout.3.html), `STDIN` is associated with filedescriptor `0`. That means if we give `0x1234` as an argument, the `fd` will become `0`.
+
+We call the `fd` program with argument 4660 (`0x1234` in decimal) and enter the `LETMEWIN` string:
+
+```bash
+fd@ubuntu:~$ ./fd `python -c "print 0x1234"` # This is equivalent to './fd 4660'
+LETMEWIN
+good job :)
+mommy! I think I know what a file descriptor is!!
+fd@ubuntu:~$
+```
+
+So the flag is `mommy! I think I know what a file descriptor is!!`
 <!--endsec-->
 
 
