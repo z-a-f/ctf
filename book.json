@@ -1,0 +1,24 @@
+{ 
+    "title": "Zaf's CTF", 
+    "description": "Lerning CTF", 
+    "language": "en", 
+    "plugins": [ 
+        "copy-code-button", 
+        "disqus", 
+        "expandable-chapters", 
+        "mathjax", 
+        "sectionx", 
+        "youtube" 
+    ], 
+    "pluginsConfig": { 
+        "disqus": { 
+            "shortName": "zafs-ctf" 
+        }, 
+        "mathjax": { 
+            "forceSVG": true 
+        } 
+    }, 
+    "structure": { 
+        "readme": "README.md" 
+    }
+}
