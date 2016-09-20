@@ -69,6 +69,8 @@ fd@ubuntu:~$
 
 ```
 
+### Step 3: Get the flag
+
 OK, `fd.c` MUST have access to the file! It expects an argument that will become a _file descriptor_. 
 According to the [Linux MAN page](http://man7.org/linux/man-pages/man3/stdout.3.html), `STDIN` is associated with filedescriptor `0`. That means if we give `0x1234` as an argument, the `fd` will become `0`.
 
