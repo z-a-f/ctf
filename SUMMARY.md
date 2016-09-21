@@ -5,4 +5,4 @@
         * [fd](pwnable.kr/Toddler's Bottle/fd.md)
         * [col](pwnable.kr/Toddler's Bottle/col.md)
         * [bof](pwnable.kr/Toddler's Bottle/bof.md)
-        * [FLAG](pwnable.kr/Toddler's Bottle/FLAG.md)
+        * [flag](pwnable.kr/Toddler's Bottle/flag.md)
