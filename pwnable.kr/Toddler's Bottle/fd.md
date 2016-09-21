@@ -1,6 +1,4 @@
-# Toddler's Bottle
-
-### Question
+## Question
 
 > Mommy! what is a file descriptor in Linux?
 > 
