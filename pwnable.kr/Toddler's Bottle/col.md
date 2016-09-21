@@ -119,13 +119,13 @@ col@ubuntu:~$ ls
 col  col.c  flag
 
 col@ubuntu:~$ ./col $(python -c "print '\xc8\xce\xc5\x06'*4 + '\xcc\xce\xc5\x06'")
-
+daddy! I just managed to create a hash collision :)
 ```
 
 
 
 
-So the flag is `mommy! I think I know what a file descriptor is!!`
+So the flag is `daddy! I just managed to create a hash collision :)`
 <!--endsec-->
 
 
